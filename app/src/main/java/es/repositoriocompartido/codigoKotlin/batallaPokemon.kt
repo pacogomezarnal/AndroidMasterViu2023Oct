@@ -1,66 +1,82 @@
 package es.repositoriocompartido.codigoKotlin
 
-enum class TipoPokemon{
-    AGUA,ELECTRICO,FUEGO
+enum class TipoPokemon {
+    AGUA, ELECTRICO, FUEGO
 }
 
-enum class TipoAtaque{
+enum class TipoAtaque {
     NORMAL, ELECTRICO, PSIQUICO, AGUA, LUCHA
 }
 
-class Ataque(val nombre:String,val tipoAtaque:TipoAtaque,val danyo:Int)
+class Ataque(val nombre:String,val tipoAtaque:TipoAtaque, val valor:Int)
 
 class Pokemon(val nombre:String,val tipo:TipoPokemon,var vida:Int=0,val ataques:Array<Ataque>){
-
-    fun restarVida(danyo:Int=0){
-        this.vida=-danyo
+    fun restarVida(danyo:Int =0){
+        this.vida-=danyo
     }
     fun pintarAtaques(){
+        var i=0
         for(ataque in ataques){
-            //Imprimir nombre -> número
+            print("${ataque.nombre}[$i] ")
+            i++
         }
+        println()
     }
 }
 
 fun main(){
-        var turnoPikachu =true
-        var ataqueElegido:String=""
-        var ataqueIa:Int=0
+    var jugarPartida=true
+    var turnoPikachu=true
+    var ataqueElegido:String=""
+    var ataqueRndmS:Int=0
+    //Creamos Pikachu
+    val ataquesPikachu=arrayOf(Ataque("Látigo",TipoAtaque.NORMAL,30),
+        Ataque("BolaVoltio",TipoAtaque.ELECTRICO,10),
+        Ataque("Agilidad",TipoAtaque.PSIQUICO,30)
+    )
+    val pikachu = Pokemon("Pikachu",TipoPokemon.ELECTRICO,100,ataquesPikachu)
 
-        //Creamos los ataques
-        val ataquesSquirtle= arrayOf(Ataque("Sorpresa",TipoAtaque.NORMAL,30),
-            Ataque("Demolicion",TipoAtaque.LUCHA,10),
-            Ataque("Buceo",TipoAtaque.AGUA,20),
-            )
+    //Creamos Squirtle
+    val ataquesSquirtle=arrayOf(Ataque("Sorpresa",TipoAtaque.NORMAL,40),
+        Ataque("Demolicion",TipoAtaque.LUCHA,10),
+        Ataque("Buceo",TipoAtaque.AGUA,20)
+    )
+    val squirtle = Pokemon("Squirtle",TipoPokemon.AGUA,100,ataquesSquirtle)
 
-        val ataquesPikachu= arrayOf(Ataque("Látigo",TipoAtaque.NORMAL,30),
-            Ataque("BolaVoltio",TipoAtaque.ELECTRICO,20),
-            Ataque("Agilidad",TipoAtaque.PSIQUICO,30),
-        )
+    println("==== COMIENZA LA PELEA ENTRE PIKACHU Y SQUIRTLE ====")
+    println(" ${pikachu.nombre.uppercase()} : ${pikachu.vida}")
+    println(" ${squirtle.nombre.uppercase()} : ${squirtle.vida}")
 
-        //Creamos Pokemos Pikachu
-        val pikachu = Pokemon("Pikachu",TipoPokemon.ELECTRICO,100,ataquesPikachu)
-        val squirtle = Pokemon("Squirtle",TipoPokemon.AGUA,100,ataquesSquirtle)
-
-        //COMENZAMOS LA PARTIDA
-        println("======== COMIENZA LA BATALLA ENTRE ${pikachu.nombre.uppercase()} Y ${squirtle.nombre.uppercase()} ======== COMIENZA LA BATALLA ENTRE ")
-
-    while((pikachu.vida>0) && (squirtle.vida>0) ){
+    while (jugarPartida){
+        //Comprobar de quien es el turno
         if(turnoPikachu){
-            println("### ATAQUE PIKACHU")
-            print("### ELIJE UN ATAQUE->")
+            println("## ATAQUE PIKACHU ")
+            println("## ELIGE UN ATAQUE -> ")
             pikachu.pintarAtaques()
             ataqueElegido= readln()
-            when(ataqueElegido.toInt()) {
-                0 -> squirtle.restarVida(pikachu.ataques[0].danyo)
+            when (ataqueElegido.toInt()){
+                0 -> squirtle.restarVida(pikachu.ataques[0].valor)
+                1 -> squirtle.restarVida(pikachu.ataques[1].valor)
+                2 -> squirtle.restarVida(pikachu.ataques[2].valor)
+                else -> squirtle.restarVida(pikachu.ataques[1].valor)
             }
-            //turno pasaria a Squirtle
+            turnoPikachu=false
         }else{
-            //ES LA MAQUINA QUIEN ELIGE
-            ataqueIa=(0..2).random()
+            println("## ATAQUE SQUIRTLE ")
+            ataqueRndmS=(0..2).random()
+            println("## SQUIRTLE ATACA CON -> ${squirtle.ataques[ataqueRndmS].nombre.uppercase()}")
+            pikachu.restarVida(squirtle.ataques[ataqueRndmS].valor)
+            turnoPikachu=true
         }
-
-        //MENSAJE DE FINALIZACION
+        if(squirtle.vida<=0 ||  pikachu.vida<=0) jugarPartida=false
+        println()
+        println(" ${pikachu.nombre.uppercase()} : ${pikachu.vida}")
+        println(" ${squirtle.nombre.uppercase()} : ${squirtle.vida}")
     }
 
+    /*
+for(i in 1..10){
+    println("Vida de ${pikachu.nombre} es ${pikachu.vida}")
+    pikachu.restarVida(10)
+}*/
 }
