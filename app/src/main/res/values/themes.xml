@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.AndroidMasterViu" parent="Base.Theme.AndroidMasterViu" />
+
+    <style name="SubTituloCanal">
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/canal_subtitle_text</item>
+    </style>
+
 </resources>

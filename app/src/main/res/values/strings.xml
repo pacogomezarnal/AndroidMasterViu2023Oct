@@ -10,4 +10,10 @@
     <string name="resultado">Resultado</string>
     <string name="reCalcular">Volver a Calcular</string>
 
+    <!--CANALES  -->
+    <string name="tituloCanal">Mis CAnales</string>
+    <string name="categorias">Categorias</string>
+    <string name="canales">Canales</string>
+
+
 </resources>
