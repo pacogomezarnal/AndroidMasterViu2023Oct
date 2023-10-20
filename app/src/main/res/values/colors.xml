@@ -20,4 +20,9 @@
     <color name="canal_technology_category">#FF9800</color>
     <color name="canal_cooking_category">#00BCD4</color>
     <color name="canal_other_category">#4CAF50</color>
+
+    <!--FRagments-->
+    <color name="primer_fragment">#EB1555</color>
+    <color name="segundo_fragment">#FF2D4993</color>
+    <color name="tercer_fragment">#FF9800</color>
 </resources>

@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name="es.repositoriocompartido.navegacionFragments.TestFragmentActivity"
+            android:exported="false" />
+        <activity
             android:name="es.repositoriocompartido.canalesyoutube.CanalesYoutubeActivity"
             android:exported="false" />
         <activity

@@ -74,7 +74,7 @@ class CanalesYoutubeActivity : AppCompatActivity() {
     //Funcion de peticion contra APIResptFul
     private fun getCanalesRetrofit():Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.0.108:3000/data/")
+            .baseUrl("http://192.168.0.108:3000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

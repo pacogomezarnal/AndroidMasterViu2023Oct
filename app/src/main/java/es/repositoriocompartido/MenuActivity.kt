@@ -9,6 +9,7 @@ import es.repositoriocompartido.androidmasterviu.R
 import es.repositoriocompartido.canalesyoutube.CanalesYoutubeActivity
 import es.repositoriocompartido.imcAtivity.ImcActivity
 import es.repositoriocompartido.imcMejorado.ImcMejoradoActivity
+import es.repositoriocompartido.navegacionFragments.TestFragmentActivity
 import es.repositoriocompartido.saludaApp.SaludaActivity
 
 class MenuActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class MenuActivity : AppCompatActivity() {
         val btnSaluda= findViewById<Button>(R.id.btnSaluda)
         val btnImcMejorado= findViewById<Button>(R.id.btnIMcAppMejorada)
         val btnCanales= findViewById<Button>(R.id.btnCanales)
+        val btnFragment= findViewById<Button>(R.id.btnFragment)
 
 
         //Eventos
@@ -39,6 +41,10 @@ class MenuActivity : AppCompatActivity() {
         btnCanales.setOnClickListener {
             Log.i("MENU --------- ","LANZAMOS CANALES APP")
             navegarHaciaApp(CanalesYoutubeActivity::class.java)
+        }
+        btnFragment.setOnClickListener {
+            Log.i("MENU --------- ","LANZAMOS FRAGMENT")
+            navegarHaciaApp(TestFragmentActivity::class.java)
         }
     }
 
